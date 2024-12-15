@@ -14,7 +14,14 @@ if __name__ == '__main__':
     print_hi('PyCharm')
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
 print('PyCharm')
 a=1
 b=2
 print(a+b)
+#输出多个值，用逗号隔开
+print(a,b)
+#sep的值用来分隔多个值，默认是空格
+print(a,b,sep='分割符')
+#end的值来设定结尾，默认是\n
+print(a,b,sep='---',end='结束符')
