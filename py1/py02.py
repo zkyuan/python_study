@@ -1,3 +1,8 @@
+"""
+ * @author: zkyuan
+ * @date: 2024/12/16 23:21
+ * @Description: if判断
+"""
 # if判断 冒号一定要有
 # 代码格式整理：ctrl+alt+L
 a = 1

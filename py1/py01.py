@@ -1,4 +1,8 @@
-# 运算符
+"""
+ * @author: zkyuan
+ * @date: 2024/12/16 23:20
+ * @Description: 运算符
+"""
 # 除 / ，结果是浮点数float
 print(1 / 1)
 # 除取整 //
