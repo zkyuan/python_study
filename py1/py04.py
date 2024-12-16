@@ -44,9 +44,54 @@ print("张起灵\t" * 10)
 # in：包含返回True，不包含返回False
 # not in：包含返回False，不包含返回True
 name = "zhangkuiyuan"
-print("yuan" in name) #True
-print("yuan" not in name) #False
-print("zkyuan" in name) #False
-print("zkyuan" not in name) #True
+print("yuan" in name)  # True
+print("yuan" not in name)  # False
+print("zkyuan" in name)  # False
+print("zkyuan" not in name)  # True
 
+# 字符数组
+i = 0
+while i < 11:
+    print(name[i], end="-")
+    i += 1
+print()
+
+# 字符截取切片 [开始位置:结束位置:步长]（包前不包后）
+# zhangkuiyuan
+# 正数：从左到右，正向 ;步长默认1
+print(name[0:5])  # zhang
+print(name[0:5:2])  # zag
+# 负数：从右往左，反向 ；步长要指定
+print(name[-1:-5:-1])  # nauy
+print(name[-1:-5:-2])  # nu
+
+# 查找元素 find()：检测某个子字符是否包含在字符串中，在则返回子字符串的开始下标，否则返回-1
+# find("子字符串",开始位置,最后位置) 开始和结束可以省略
+print(name.find("yuan"))  # 8
+print(name.find("an", 4))  # 10
+print(name.find("zh", 3))  # -1
+print(name.find("an", 4, 8))  # -1
+
+# index():检测某个子字符串是否包含在字符串中，在则返回子字符串的开始下标，否则报错
+print(name.index("yuan"))  # 8
+print(name.index("an", 4))  # 10
+# print(name.index("zh", 3))  # 报错
+# print(name.index("an", 4, 8))  # 报错
+
+# count():返回某个子字符串出现的次数，没有就返回0
+print(name.count("yuan"))  # 8
+print(name.count("an", 4))  # 10
+print(name.count("zh", 3))  # 0
+print(name.count("an", 4, 8))  # 0
+
+# 判断
+# startswith():是否以某个字符串开头
+print(name.startswith("zh"))  # True
+print(name.startswith("zh", 2))  # False
+# endswith():是否以某个字符串结尾
+print(name.endswith("an"))  # True
+print(name.endswith("an", 2, 6))  # False
+# isupper():大小写检测，若全是大写返回True
+print(name.isupper())  # False
+print("ZHANGKUIYUAN".isupper())  # True
 
