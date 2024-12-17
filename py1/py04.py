@@ -100,3 +100,14 @@ print(name.endswith("an", 2, 6))  # False
 print(name.isupper())  # False
 print("ZHANGKUIYUAN".isupper())  # True
 
+# 修改元素
+# replace(旧字符串,新字符串,替换次数)：替换,
+print(name.replace("zhangkui", "zk"))  # zkyuan
+print(name.replace("a", "A"))  # zhAngkuiyuAn
+print(name.replace("a", "A", 1))  # zhAngkuiyuan
+# split()：指定分隔符来切分字符串,可指定分割次数
+print(name.split("a"))  # ['zh', 'ngkuiyu', 'n']
+# capitalize()：第一个字符大写，其他小写
+print(name.capitalize())
+# lower()：大写转小写
+# upper()：小写转大写
