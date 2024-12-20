@@ -1,7 +1,7 @@
 """
  * @author: zkyuan
  * @date: 2024/12/16 23:22
- * @Description: 字符串
+ * @Description: 字符串 str
 """
 
 str1: str = "字符串"
