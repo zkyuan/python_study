@@ -117,3 +117,4 @@ collection2 = {"zky", "zkyuan", "z", "k", 'y', "qwer"}
 print(collection1 & collection2)
 # 并集 | ，合起来的部分去重
 print(collection1 | collection2)
+[print(str(collection1)[i]) for i in range(0,10)]
