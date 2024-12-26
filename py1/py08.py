@@ -103,4 +103,54 @@ print(fun8(name="zhangkyuan", age="22"))
 import builtins
 
 print(dir(builtins))  # 大写开头：内置常量名 ； 小写开头：内置函数名
+# sum(参数为可迭代对象)
+# max(，key=abs) min(，key=) key=abs即比较绝对值的大小
+# abs()绝对值
+# zip()：将可迭代对象作为参数，将对象中的对应的元素打包成一个元组
+list1 = [1, 2, 3]
+list2 = ["z", "k", "y"]
+for i in zip(list1, list2):
+    print(i, type(i))
+"""
+(1, 'z') <class 'tuple'>
+(2, 'k') <class 'tuple'>
+(3, 'y') <class 'tuple'>
+"""
+# 如果元素个数不一致，就按最短的返回
+list3 = ["zhang", "kui", "yuan", "26"]
+print(list(zip(list1, list3)))  # 类型转换为列表list：[(1, 'zhang'), (2, 'kui'), (3, 'yuan')]
 
+# map()：可以对可迭代对象中的每一个元素进行映射，分别去执行
+# map(func,iter1):func自己定义的函数，iter1要放进去的可迭代对象
+# iter1中的每个元素都会作为参数去执行func这个函数
+
+fun9 = lambda x: x * 2
+m = map(fun9, list1)
+# print(list(m), type(m)) # 一个变量被强制类型转换后，值发生了变化
+[print(i) for i in m]
+
+# reduce() 累计参数：把可迭代对象中的元素取出，放在函数中执行，结果继续跟下一个元素进行执行
+from functools import reduce
+
+# reduce(func,sequence) func：必须是有两个参数的函数，sequence：序列，可迭代对象
+add = lambda x, y: x + y
+"""
+[1,2,3,4]
+1 + 2 = 3
+3 + 3 = 6
+6 + 4 = 10
+"""
+re = reduce(add, list1)
+print(re)
+
+# 拆包
+# 对于函数中的多个返回数据，去掉元组、列表、字典，直接获取里面的数据的过程
+tua = (1, 2, 3, 4)
+print(tua)
+print(tua[1])
+# 方法1：要求元组内的个数与接收的个数相同;变量不一致报错ValueError
+a, b, c, d = tua  # 在获取元组值的时候使用
+print(a, b, c, d)
+# 方法2：可变参数变量，多在函数调用时使用
+x, *y = tua
+print(x, y)  # 1 [2, 3, 4]
