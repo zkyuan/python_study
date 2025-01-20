@@ -64,8 +64,28 @@ finally:
 """
 1、创建一个Exception('xxx')对象，
 2、raise抛出这个异常对象
+3、程序终止
 """
-raise Exception("这是自定义异常")
+
+# raise Exception("这是自定义异常")
+
+
 def fune():
     print("可以的")
     raise Exception("自定义异常")
+    #print("raise后面")  # 这部分不会执行，爆黄线
+
+
+# fune()
+
+
+# 密码验证
+def login():
+    password = input("请输入密码")
+    if len(password) >= 6:
+        print("密码输入成功")
+    else:
+        raise Exception("密码长度太短")
+
+
+login()
