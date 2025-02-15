@@ -80,11 +80,23 @@ me.info()
 
 
 class Boy(Person):
-    None
+    sex = "boy"
+
+    def boy(self):
+        print(self.sex)
+
+    def one(self):
+        print(f"这是{self.sex}的one方法")
 
 
 class Girl(Person):
-    pass
+    sex = "girl"
+
+    def girl(self):
+        print(self.sex)
+
+    def one(self):
+        print(f"这是{self.sex}的one方法")
 
 
 b = Boy(30000, "zkyuan")
@@ -118,3 +130,32 @@ me.money()
 b.money()
 g.money()
 cb.money()
+
+# 新式类
+"""
+    class A: 经典类：不由任意内置类型派生出的类
+    class A(B): 派生类，继承B后有新的属性或方法
+    class A(object): 新式类：继承了object类。推荐使用。dir()函数查看 
+    （所有类都继承object类，是为基类。且python3之后都是新式类，默认基础）
+"""
+
+
+class A(object):
+    paa = 2
+
+
+# 多继承：可以有多个父类
+
+class Student(Girl, Boy):
+    num = 125487542
+
+    def stu(self):
+        print(f"这是一个学生类,学号：{self.num}")
+
+
+student = Student(3000, "zkyuan")
+
+# 多个父类有同名方法时，按着就近原则，调用继承父类时写在前面的；且子类优先
+student.one()
+# 查看python中方法搜索顺序  __mro__
+print(Student.__mro__)
