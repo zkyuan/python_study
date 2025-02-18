@@ -1,7 +1,7 @@
 """
  * @author: zkyuan
  * @date: 2025/2/8 18:07
- * @descipton: 面向对象
+ * @description: 面向对象
 """
 
 # 类（类名、属性、方法）

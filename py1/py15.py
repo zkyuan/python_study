@@ -1,7 +1,7 @@
 """
  * @author: zkyuan
  * @date: 2025/2/15 16:08
- * @descipton: 多态
+ * @description: 多态
 """
 
 

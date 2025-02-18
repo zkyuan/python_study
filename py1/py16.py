@@ -1,7 +1,7 @@
 """
  * @author: zkyuan
  * @date: 2025/2/15 16:24
- * @descipton: 静态方法、类方法
+ * @description: 静态方法、类方法
 """
 
 """

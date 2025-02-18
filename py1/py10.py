@@ -1,7 +1,7 @@
 """
  * @author: zkyuan
  * @date: 2025/1/20 17:04
- * @descipton: 模块
+ * @description: 模块
 """
 # 一个.py文件就是一个模块，导入模块就是导入一个py文件
 # 1、内置模块

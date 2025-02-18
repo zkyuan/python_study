@@ -1,7 +1,7 @@
 """
  * @author: zkyuan
  * @date: 2025/2/8 15:39
- * @descipton: 装饰器
+ * @description: 装饰器
 """
 
 

@@ -1,7 +1,7 @@
 """
  * @author: zkyuan
  * @date: 2025/1/21 11:31
- * @descipton: 包：模块分类管理、递归、闭包、装饰器
+ * @description: 包：模块分类管理、递归、闭包、装饰器
 """
 import com
 # 文件夹里面有“__init__.py”文件，

@@ -16,7 +16,7 @@ if __name__ == '__main__':
 """
  * @author: zkyuan
  * @date: 2024/12/16 23:20
- * @Description: 输出打印
+ * @description: 输出打印
 """
 print('PyCharm')
 a = 1
