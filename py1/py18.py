@@ -24,6 +24,8 @@
                 w+:写读，先写再读。文件存在就编辑，先清空，再写入；不存在就创建
                 a :追加模式，不存在就创建新文件写入，存在则在原有内容追加新内容
                 a+:
+                rb：二进制读
+                wb:二进制写
     文件名.closed：检测文件是否关闭，关闭就返回True
 """
 
@@ -65,3 +67,42 @@ f.close()
                         whence：起始位置，表示移动字节的参考位置，默认是0代表开头，1代表当前位置，2代表末尾位置
     seek(0,0)：指针移动到开头位置
 """
+
+# with open：代码执行完系统自动调用close关闭文件
+with open("test01.txt", 'r+', encoding='utf-8') as file:
+    print(file.read())
+
+# 图片复制 rb模式
+"""
+    1、读图片，二进制
+    2、写图片，二进制
+    不要encoding
+"""
+with open("E:\\code\\GitWork\\python_study\\py1\\resources\\a.png", 'rb') as file:
+    readImg = file.read()
+
+with open("p.png", 'wb') as file:
+    file.write(readImg)
+
+# 文件目录操作
+# 导入模块 os
+import os
+
+# 文件重命名
+os.rename("p.png", "p2.png")
+
+# 删除文件
+os.remove("p2.png")
+
+# 创建文件夹
+os.mkdir("zzz")
+
+# 删除文件夹
+os.rmdir("zzz")
+
+# 获取当前目录
+os.getcwd()
+
+# 获取目录列表
+os.listdir()  # 获取当前目录列表
+os.listdir("../")  # 获取上级目录列表
