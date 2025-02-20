@@ -34,3 +34,31 @@ messages.append({'role': response.output.choices[0]['message']['role'],
 messages.append({'role': Role.USER, 'content': '不放糖可以吗？'})
 response = Generation.call(Generation.Models.qwen_turbo, messages=messages, result_format='message')
 print(response.output.choices[0]['message']['content'])
+
+# 4、通过prompt提示词对话，更简单
+response = dashscope.Generation.call(model=dashscope.Generation.Models.qwen_turbo, prompt='如何做西红柿鸡蛋汤？')
+print(response.output['text'])
+
+# 5、流式输出，一边生成一边输出结果
+# 两个参数 stream=True,incremental_output=True ，for循环输出
+messages = [{'role': 'user', 'content': '如何做西红柿鸡蛋汤？'}]
+responses = Generation.call(Generation.Models.qwen_turbo, messages=messages, result_format='message', stream=True,
+                            incremental_output=True)
+for response in responses:
+    print(response.output.choices[0]['message']['content'], end='')
+
+# 6、控制台循环对话
+msg = []
+while True:
+    msgs = input('user:')
+    # 停止条件
+    if msgs == 'z':
+        break
+    # 将输入信息加入历史对话
+    msg.append({'role': Role.USER, 'content': msgs})
+    # 获得模型输出结果
+    response = Generation.call(Generation.Models.qwen_turbo, messages=msg, result_format='message')
+    print('system:' + response.output.choices[0]['message']['content'])
+    # 将输出信息加入历史对话
+    msg.append({'role': response.output.choices[0]['message']['role'],
+                     'content': response.output.choices[0]['message']['content']})
