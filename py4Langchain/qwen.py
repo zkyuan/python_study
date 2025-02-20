@@ -9,7 +9,7 @@ from dashscope.api_entities.dashscope_response import Role
 
 # 1、如果环境变量配置无效请启用以下代码
 # dashscope.api_key = 'YOUR_DASHSCOPE_API_KEY'
-
+# os.environ["dashscope_api_key"] = 'YOUR_DASHSCOPE_API_KEY'
 
 # 2、使用通义千问API进行Token切分 Tokenization
 response = dashscope.Tokenization.call(model='qwen-turbo', messages=[{'role': 'user', 'content': '你好？'}])
