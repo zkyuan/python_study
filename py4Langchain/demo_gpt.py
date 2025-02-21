@@ -1,3 +1,8 @@
+"""
+ * @author: zkyuan
+ * @date: 2025/2/21 21:28
+ * @description: 调用代理的OpenAI GPT
+"""
 import os
 
 import requests
