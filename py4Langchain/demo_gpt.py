@@ -1,10 +1,11 @@
+import os
 
 import requests
 
 
 def request_chatgpt_function():
     url = "https://api.aihao123.cn/luomacode-api/open-api/v1/chat/completions"  # 可以替换为任何代理的接口
-    OPENAI_API_KEY = "sk-"  # openai官网获取key
+    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")  # openai官网获取key
     header = {"Content-Type": "application/json", "Authorization": "Bearer " + OPENAI_API_KEY}
     data = {
         "model": "gpt-3.5-turbo",
