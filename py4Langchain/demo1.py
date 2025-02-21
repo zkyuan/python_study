@@ -3,14 +3,16 @@
  * @date: 2025/2/20 16:17
  * @description: 用openAI的方式调用通义千问
 """
+import os
+
 from openai import OpenAI
 
 try:
     # 配置环境
     client = OpenAI(
         # 若没有配置环境变量，请用百炼API Key将下行替换为：api_key="sk-xxx",
-        # api_key=os.getenv("DASHSCOPE_API_KEY"),
-        api_key="sk-955a716c2390445388d3fc4e33d14e1e",
+        api_key=os.getenv("DASHSCOPE_API_KEY"),
+        # api_key="sk-",
         base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
     )
 
