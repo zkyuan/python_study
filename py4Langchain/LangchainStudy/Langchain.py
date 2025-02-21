@@ -53,6 +53,23 @@ prompt_template = ChatPromptTemplate.from_messages(
 # 给提示词模版传参，它得到的结果就是特殊类型 ChatPromptValue(messages=[SystemMessage(content='Translate the following into italian:'), HumanMessage(content='hi')])
 msg = prompt_template.invoke({"language": 'Chinese', "text": "hello!"})
 
+"""
+消息占位符
+    prompt_template = ChatPromptTemplate.from_messages([
+        ("system", "You are a helpful assistant"),
+        MessagesPlaceholder("msgs")
+    ])
+    prompt_template.invoke({"msgs": [HumanMessage(content="hi!")]})
+这样就可以生成多条msgs时，只需要一条system消息
+"""
+"""
+一种不显式使用 MessagesPlaceholder 类来实现相同功能的替代方法是：
+    prompt_template = ChatPromptTemplate.from_messages([
+        ("system", "You are a helpful assistant"),
+        ("placeholder", "{msgs}") # <-- This is the changed part
+    ])
+"""
+
 # 将它转为messages格式
 to_messages = msg.to_messages()
 # print(chain.invoke(to_messages))
