@@ -71,3 +71,8 @@ if __name__ == "__main__":
     import uvicorn
 
     uvicorn.run(app, host="localhost", port=8000)
+
+"""python代码调用方式
+    client = RemoteRunnable('localhost:8000/chain/')
+    print(client.invoke({'language': 'italian', 'text': '你好！'}))
+"""
