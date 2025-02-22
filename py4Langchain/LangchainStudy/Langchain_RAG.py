@@ -1,7 +1,7 @@
 """
  * @author: zkyuan
  * @date: 2025/2/22 20:32
- * @description: RAG案例
+ * @description: RAG案例,检索增强生成技术，给AI大模型一些额外的、私有的、外部的数据让他学习后再回答
 """
 
 import os
