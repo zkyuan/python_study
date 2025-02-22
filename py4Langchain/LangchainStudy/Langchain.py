@@ -74,7 +74,7 @@ msg = prompt_template.invoke({"language": 'Chinese', "text": "hello!"})
 to_messages = msg.to_messages()
 # print(chain.invoke(to_messages))
 
-# 可以将大模型、解析器、提示词模版链接起来，
+# 可以将大模型、解析器、提示词模版链接起来，只有Runnable及其子类才能链接
 chain = prompt_template | model | parser
 print(chain.invoke({"language": 'Chinese', "text": "hello!my name is zky"}))
 
