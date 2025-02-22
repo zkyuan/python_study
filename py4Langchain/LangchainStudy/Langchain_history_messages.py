@@ -58,7 +58,7 @@ res2 = with_message_history.invoke(
     config=config,
 )
 print(res2)
-# 配置新对话
+# 配置新对话 session_id决定会话编号
 config = {"configurable": {"session_id": "123"}}
 res3 = with_message_history.invoke(
     [HumanMessage(content="What's my name?")],

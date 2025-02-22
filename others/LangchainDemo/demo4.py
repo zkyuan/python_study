@@ -6,8 +6,8 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langgraph.prebuilt import chat_agent_executor
 from langserve import add_routes
 
-os.environ['http_proxy'] = '127.0.0.1:7890'
-os.environ['https_proxy'] = '127.0.0.1:7890'
+os.environ['http_proxy'] = '127.0.0.1:7897'
+os.environ['https_proxy'] = '127.0.0.1:7897'
 
 os.environ["LANGCHAIN_TRACING_V2"] = "true"
 os.environ["LANGCHAIN_PROJECT"] = "LangchainDemo"
@@ -16,7 +16,7 @@ os.environ["TAVILY_API_KEY"] = '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'
 
 # 聊天机器人案例
 # 创建模型
-model = ChatOpenAI(model='gpt-4-turbo')
+model = ChatOpenAI(model='gpt-4-turbo',base_url='https://api.aihao123.cn/luomacode-api/open-api/v1',)
 
 # 没有任何代理的情况下
 # result = model.invoke([HumanMessage(content='北京天气怎么样？')])
