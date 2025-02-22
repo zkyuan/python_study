@@ -18,7 +18,7 @@ model = ChatOpenAI(
     model="gpt-4",
     # gpt代理配置
     base_url='https://api.aihao123.cn/luomacode-api/open-api/v1',
-    api_key=os.getenv("OPEN_API_KEY")
+    api_key=os.getenv("OPENAI_API_KEY")
     # api_key=os.getenv("DASHSCOPE_API_KEY"),
     # base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
 )
@@ -75,8 +75,9 @@ documents = [
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 
-# embedding = OpenAIEmbeddings(model="gpt-4", base_url='https://api.aihao123.cn/luomacode-api/open-api/v1/chat/completions',
-#                              api_key=os.getenv("OPEN_API_KEY"))
-embedding = OpenAIEmbeddings(model="gpt-4")
+embedding = OpenAIEmbeddings(model="gpt-4", base_url='https://api.aihao123.cn/luomacode-api/open-api/v1',
+                            api_key=os.getenv("OPENAI_API_KEY"))
 # 不能创建向量数据空间
 vectorstore = Chroma.from_documents(documents=documents, embedding=embedding)
+
+vectorstore.similarity_search("cat")

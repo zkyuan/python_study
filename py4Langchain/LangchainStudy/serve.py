@@ -32,7 +32,7 @@ model = ChatOpenAI(
     model="gpt-3.5-turbo",
     # gpt代理配置
     base_url='https://api.aihao123.cn/luomacode-api/open-api/v1',
-    api_key=os.getenv("OPEN_API_KEY")
+    api_key=os.getenv("OPENAI_API_KEY")
 )
 
 # 3、创建解析器Create parser
