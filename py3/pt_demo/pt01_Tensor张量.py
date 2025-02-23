@@ -1,13 +1,29 @@
 """
  * @author: zkyuan
  * @date: 2025/2/19 17:12
- * @description: pytorch
+ * @description: pytorch--Tensor
 """
+
 # 安装模块：pip install torch
 # 安装模块：pip install numpy
 # from  __future__ import print_function
 import torch
 
+"""创建张量
+    torch.empty(3,4) 空的张量 dtype=类型
+    torch.ones(3,3) 默认值为1
+    torch.zeros(3,3) 默认值为0
+    torch.rand(3,4) 随机值，[0,1)之间
+    torch.randn(3,3) 随机值
+    torch.randint(low=0,high=10,size=[3,4])  low和high之间的随机值，大小为3行四列
+    torch.randn_like(x, dtype=torch.float)  跟x一样的大小随机值
+"""
+
+"""张量的方法和属性
+    tensor.item()：当tensor为一个数据的时候，获取tensor的值
+    tensor.numpy():tensor转为数组
+    tensor.size():
+"""
 # 创建没有初始化的矩阵
 # x = torch.empty(5, 3)
 # print(x)
