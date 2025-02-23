@@ -1,23 +1,27 @@
 import os
 
-from langchain_core.prompts import PromptTemplate, FewShotPromptTemplate
-from langchain_experimental.synthetic_data import create_data_generation_chain
+from langchain_openai import ChatOpenAI
+from langchain.prompts import PromptTemplate, FewShotPromptTemplate
 from langchain_experimental.tabular_synthetic_data.openai import create_openai_data_generator
 from langchain_experimental.tabular_synthetic_data.prompts import SYNTHETIC_FEW_SHOT_PREFIX, SYNTHETIC_FEW_SHOT_SUFFIX
-from langchain_openai import ChatOpenAI
-from pydantic.v1 import BaseModel
-
-os.environ['http_proxy'] = '127.0.0.1:7890'
-os.environ['https_proxy'] = '127.0.0.1:7890'
+from pydantic import BaseModel
 
 os.environ["LANGCHAIN_TRACING_V2"] = "true"
-os.environ["LANGCHAIN_PROJECT"] = "LangchainDemo"
-os.environ["LANGCHAIN_API_KEY"] = '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'
-# os.environ["TAVILY_API_KEY"] = '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'
+os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
+os.environ["LANGCHAIN_PROJECT"] = "ChatBot"
+os.environ["LANGCHAIN_API_KEY"] = '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'
 
 # 聊天机器人案例
 # 创建模型
-model = ChatOpenAI(model='gpt-3.5-turbo', temperature=0.8)
+api_base = '127.0.0.1:7897'
+
+model = ChatOpenAI(
+    model="gpt-3.5-turbo",
+    temperature=0.7,
+    # gpt代理配置
+    base_url='https://api.aihao123.cn/luomacode-api/open-api/v1',
+    api_key=os.getenv("OPEN_API_KEY")
+)
 
 
 # 生成一些结构化的数据： 5个步骤
@@ -48,10 +52,14 @@ examples = [
 openai_template = PromptTemplate(input_variables=['example'], template="{example}")
 
 prompt_template = FewShotPromptTemplate(
+    # prefix 和 suffix：这些可能包含指导上下文或说明。
     prefix=SYNTHETIC_FEW_SHOT_PREFIX,
     suffix=SYNTHETIC_FEW_SHOT_SUFFIX,
+    # 自定义的示例数据
     examples=examples,
+    # 希望每个示例行在提示中采用的格式。
     example_prompt=openai_template,
+    # 这些变量（"subject", "extra"）是占位符，稍后动态填充
     input_variables=['subject', 'extra']
 )
 
