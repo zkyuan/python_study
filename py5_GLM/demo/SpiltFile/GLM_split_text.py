@@ -16,7 +16,7 @@ length_function：确定块大小的函数。
 is_separator_regex：分隔符列表（默认为 ）是否应解释为正则表达式。
 '''
 
-# 递归切割器
+# 递归切割器  Recursive递归的
 # 默认的分隔符：["\n\n", "\n", " ", ""]
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=100,

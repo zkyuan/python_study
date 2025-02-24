@@ -59,12 +59,14 @@ text_splitter = RecursiveCharacterTextSplitter(
 
 docs = text_splitter.split_documents(documents)
 print('=======', len(docs))
+
+# 百川embedding，对中文优化的向量数据库
 embeddings = BaichuanTextEmbeddings()
 
-# 连接向量数据库
+# 连接向量数据库的连接对象
 connect = lancedb.connect(os.path.join(os.getcwd(), 'lanceDB'))  # 本地目录存储向量
 
-
+# 整合向量数据库
 vectorStore = LanceDB.from_documents(docs, embeddings, connection=connect, table_name='my_vectors')
 
 query = '今年长三角铁路春游运输共经历多少天？'
@@ -97,7 +99,7 @@ output_parser = StrOutputParser()
 #  把检索器和用户输入的问题，结合得到检索结果
 start_retriever = RunnableParallel({'context': retriever, 'question': RunnablePassthrough()})
 
-# 创建长链
+# 创建长链，理清调用过程
 chain = start_retriever | prompt | model | output_parser
 
 res = chain.invoke(query)
