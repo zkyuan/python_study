@@ -4,6 +4,7 @@
  * @description: 自定义工具Tools实例，查询天气
 """
 import csv
+import os
 from typing import Type, Optional
 
 import requests
@@ -84,7 +85,7 @@ if __name__ == '__main__':
     model = ChatOpenAI(
         model='glm-4-plus',
         temperature='0.6',
-        api_key='ccbda373f00e45dc982dcbbc2adaff86.oeDL4T4VBdfPCcgE',
+        api_key=os.getenv("ZHIPU_API_KEY"),
         base_url='https://open.bigmodel.cn/api/paas/v4/'
     )
 
