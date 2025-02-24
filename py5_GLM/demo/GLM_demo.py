@@ -8,6 +8,11 @@ import os
 from langchain_core.output_parsers import StrOutputParser
 from zhipuai import ZhipuAI
 
+os.environ["LANGCHAIN_TRACING_V2"] = "true"
+os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
+os.environ["LANGCHAIN_PROJECT"] = "zhipu"
+os.environ["LANGCHAIN_API_KEY"] = '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'
+
 model = ZhipuAI(api_key=os.getenv("ZHIPU_API_KEY"))
 
 result = model.chat.completions.create(

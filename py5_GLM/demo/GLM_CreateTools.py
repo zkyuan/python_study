@@ -79,7 +79,12 @@ class WeatherTool(BaseTool):
 
 
 if __name__ == '__main__':
-    # print(find_code('weather_district_id.csv', '洞口'))
+    # print(find_code('weather_district_id.csv', '天门'))
+
+    os.environ["LANGCHAIN_TRACING_V2"] = "true"
+    os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
+    os.environ["LANGCHAIN_PROJECT"] = "zhipu"
+    os.environ["LANGCHAIN_API_KEY"] = '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'
 
     # 创建模型
     model = ChatOpenAI(
