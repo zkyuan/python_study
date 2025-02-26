@@ -56,7 +56,11 @@ y = torch.randn(batch_n, output_data)
 
 w1 = torch.randn(input_data, hidden_layer)
 w2 = torch.randn(hidden_layer, output_data)
-
+print(x)
+print(y)
+print(w1)
+print(w2)
+print("---------------------------")
 epoch_n = 20
 lr = 1e-6
 
@@ -79,3 +83,9 @@ for epoch in range(epoch_n):
 
     w1 = w1 - lr * grad_w1
     w2 = w2 - lr * grad_w2
+
+print("---------------------------")
+print(x)
+print(y)
+print(w1)
+print(w2)
