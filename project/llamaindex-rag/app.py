@@ -11,16 +11,16 @@ st.title("LlamaIndex RAG")
 @st.cache_resource
 def init_models():
     embed_model = HuggingFaceEmbedding(
-         model_name="D:\AIProject\modelscope\Ceceliachenen\paraphrase-multilingual-MiniLM-L12-v2"
+        model_name="D:\AI_Model\Ceceliachenen\paraphrase-multilingual-MiniLM-L12-v2"
     )
     Settings.embed_model = embed_model
 
     llm = HuggingFaceLLM(
-    model_name="D:\AIProject\modelscope\Qwen\Qwen2___5-0___5B-Instruct",
-    tokenizer_name="D:\AIProject\modelscope\Qwen\Qwen2___5-0___5B-Instruct",
-    model_kwargs={"trust_remote_code":True},
-    tokenizer_kwargs={"trust_remote_code":True}
-)
+        model_name="D:\AI_Model\Qwen\Qwen1___5-0___5B-Chat",
+        tokenizer_name="D:\AI_Model\Qwen\Qwen1___5-0___5B-Chat",
+        model_kwargs={"trust_remote_code": True},
+        tokenizer_kwargs={"trust_remote_code": True}
+    )
     Settings.llm = llm
 
     documents = SimpleDirectoryReader("./data").load_data()
