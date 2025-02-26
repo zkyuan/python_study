@@ -17,7 +17,7 @@ API_ENDPOINT = "http://api.wlai.vip"
 # 百川词嵌入模型：https://platform.baichuan-ai.com/console/apikey
 os.environ['BAICHUAN_API_KEY'] = 'sk-8f5c8aa47f54973d22b078f6becf58a4'
 embeddings = BaichuanTextEmbeddings()
-# 本地配置高可以用魔塔modescope的embeddings
+# 本地配置高可以用魔搭modescope的embeddings
 
 # 根据语义切割，计算句子之间的差异
 """ breakpoint_threshold_type断点门槛类型
