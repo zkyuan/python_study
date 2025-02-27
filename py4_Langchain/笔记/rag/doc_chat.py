@@ -9,12 +9,19 @@ from langchain.memory import ConversationBufferMemory
 from langchain_chroma import Chroma
 from langchain_community.callbacks.streamlit import StreamlitCallbackHandler
 from langchain_community.chat_message_histories import StreamlitChatMessageHistory
+from langchain_community.chat_models import ChatTongyi
 from langchain_community.document_loaders import TextLoader
+from langchain_community.embeddings import DashScopeEmbeddings
 from langchain_core.prompts import PromptTemplate
-from langchain_openai import ChatOpenAI
-from langchain_openai import OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
+os.environ["LANGCHAIN_TRACING_V2"] = "true"
+os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
+os.environ["LANGCHAIN_PROJECT"] = "RAG-doc-bot"
+os.environ["LANGCHAIN_API_KEY"] = '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'
+
+# streamlit hello 进入---> streamlit 会自动打开浏览器加载一个本地页面 http://localhost:8501/
+# 命令执行：streamlit run doc_chat.py
 # 设置Streamlit应用的页面标题和布局
 st.set_page_config(page_title="文档问答", layout="wide")
 # 设置应用的标题
@@ -28,6 +35,12 @@ uploaded_files = st.sidebar.file_uploader(
 if not uploaded_files:
     st.info("请先上传按TXT文档。")
     st.stop()
+
+# 创建llm
+llm = ChatTongyi(
+    model="qwen-plus",
+    api_key=os.getenv("DASHSCOPE_API_KEY"),
+)
 
 
 # 实现检索器
@@ -49,7 +62,7 @@ def configure_retriever(uploaded_files):
     splits = text_splitter.split_documents(docs)
 
     # 使用OpenAI的向量模型生成文档的向量表示
-    embeddings = OpenAIEmbeddings()
+    embeddings = DashScopeEmbeddings()
     vectordb = Chroma.from_documents(splits, embeddings)
 
     # 创建文档检索器
@@ -134,9 +147,6 @@ base_prompt = PromptTemplate.from_template(base_prompt_template)
 
 # 创建部分填充的提示模板
 prompt = base_prompt.partial(instructions=instructions)
-
-# 创建llm
-llm = ChatOpenAI()
 
 # 创建react Agent
 agent = create_react_agent(llm, tools, prompt)
