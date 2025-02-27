@@ -1,27 +1,38 @@
-#导入tavily搜索api库
+# 导入tavily搜索api库
+import os
+
+from langchain_community.chat_models import ChatTongyi
 from langchain_community.tools.tavily_search import TavilySearchResults
 
 # 创建TavilySearchResults工具，设置最大结果数为1
 tools = [TavilySearchResults(max_results=1)]
 
-#导入langchain的hub库和ChatOpenAI类，以及asyncio库和create_react_agent函数
+# 导入langchain的hub库，以及asyncio库和create_react_agent函数
 from langchain import hub
-from langchain_openai import ChatOpenAI
-#执行异步调用所需的库
+# 执行异步调用所需的库
 import asyncio
 from langgraph.prebuilt import create_react_agent
 
-# 从LangChain的Hub中获取prompt模板，可以进行修改
+os.environ["LANGCHAIN_TRACING_V2"] = "true"
+os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
+os.environ["LANGCHAIN_PROJECT"] = "LangGraph"
+os.environ["LANGCHAIN_API_KEY"] = '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'
+
+# 从LangChain的Hub中获取prompt模板，可以进行修改 https://smith.langchain.com/hub?organizationId=c23d15cb-c8b7-48d1-a15b-28beeba27fb8
 prompt = hub.pull("wfh/react-agent-executor")
 prompt.pretty_print()
 
-# 选择驱动代理的LLM，使用OpenAI的ChatGPT-4o模型
-llm = ChatOpenAI(model="gpt-4o")
+# 选择驱动代理的LLM，
+llm = ChatTongyi(
+    model="qwen-plus",
+    temperature=0,
+    api_key=os.getenv("DASHSCOPE_API_KEY"),
+)
 # 创建一个REACT代理执行器，使用指定的LLM和工具，并应用从Hub中获取的prompt
 agent_executor = create_react_agent(llm, tools, messages_modifier=prompt)
 
 # 调用代理执行器，询问“谁是美国公开赛的冠军”
-#agent_executor.invoke({"messages": [("user", "谁是美国公开赛的获胜者")]})
+# agent_executor.invoke({"messages": [("user", "谁是美国公开赛的获胜者")]})
 
 import operator
 from typing import Annotated, List, Tuple, TypedDict
@@ -59,13 +70,13 @@ planner_prompt = ChatPromptTemplate.from_messages(
         ("placeholder", "{messages}"),
     ]
 )
-# 使用指定的提示模板创建一个计划生成器，使用OpenAI的ChatGPT-4o模型
-planner = planner_prompt | ChatOpenAI(
-    model="gpt-4o", temperature=0
+# 使用指定的提示模板创建一个计划生成器
+planner = planner_prompt | ChatTongyi(
+    model="qwen-plus", temperature=0
 ).with_structured_output(Plan)
 
 # 调用计划生成器，询问“当前澳大利亚公开赛冠军的家乡是哪里？”
-#planner.invoke({"messages": [("user", "现任澳网冠军的家乡是哪里?")]})
+# planner.invoke({"messages": [("user", "现任澳网冠军的家乡是哪里?")]})
 
 from typing import Union
 
@@ -103,9 +114,9 @@ replanner_prompt = ChatPromptTemplate.from_template(
 相应地更新你的计划。如果不需要更多步骤并且可以返回给用户，那么就这样回应。如果需要，填写计划。只添加仍然需要完成的步骤。不要返回已完成的步骤作为计划的一部分。"""
 )
 
-# 使用指定的提示模板创建一个重新计划生成器，使用OpenAI的ChatGPT-4o模型
-replanner = replanner_prompt | ChatOpenAI(
-    model="gpt-4o", temperature=0
+# 使用指定的提示模板创建一个重新计划生成器
+replanner = replanner_prompt | ChatTongyi(
+    model="qwen-plus", temperature=0
 ).with_structured_output(Act)
 
 from typing import Literal
@@ -123,8 +134,7 @@ async def main():
         plan = state["plan"]
         plan_str = "\n".join(f"{i + 1}. {step}" for i, step in enumerate(plan))
         task = plan[0]
-        task_formatted = f"""对于以下计划：
-{plan_str}\n\n你的任务是执行第{1}步，{task}。"""
+        task_formatted = f"""对于以下计划：{plan_str}\n\n你的任务是执行第{1}步，{task}。"""
         agent_response = await agent_executor.ainvoke(
             {"messages": [("user", task_formatted)]}
         )
@@ -135,6 +145,9 @@ async def main():
     # 定义一个异步函数，用于重新计划步骤
     async def replan_step(state: PlanExecute):
         output = await replanner.ainvoke(state)
+        # 这里要加一个end，否则报错output为NoneType，没有action属性
+        if type(output) is None:
+            return "__end__"
         if isinstance(output.action, Response):
             return {"response": output.action.response}
         else:
