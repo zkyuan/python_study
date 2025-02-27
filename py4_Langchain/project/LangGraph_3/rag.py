@@ -3,6 +3,9 @@ import streamlit as st
 from webui import rag_chat_page, knowledge_base_page  # , platforms_page
 from utils import get_img_base64
 
+# 切目录到项目下，创建一个python=3.10的环境 conda create -n agent python=3.10
+# 激活环境 conda activate agent
+# 安装txt文件里面的依赖 pip install -r requirements.txt
 # 检查当前模块是否是主程序入口
 if __name__ == "__main__":
     # 使用streamlit的sidebar上下文管理器，在侧边栏中添加内容
