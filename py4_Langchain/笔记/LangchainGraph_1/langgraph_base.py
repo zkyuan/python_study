@@ -1,5 +1,7 @@
+import os
 from typing import Literal
 
+from langchain_community.chat_models import ChatTongyi
 from langchain_core.messages import HumanMessage
 from langchain_core.tools import tool
 from langchain_openai import ChatOpenAI
@@ -8,10 +10,19 @@ from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, StateGraph, MessagesState
 from langgraph.prebuilt import ToolNode
 
+os.environ["LANGCHAIN_TRACING_V2"] = "true"
+os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
+os.environ["LANGCHAIN_PROJECT"] = "LangGraph"
+os.environ["LANGCHAIN_API_KEY"] = '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'
 
 # 定义工具函数，用于代理调用外部工具
+"""
+ValueError: status_code: 400 
+ code: InvalidParameter 
+ message: <400> InternalError.Algo.InvalidParameter: Tool names are not allowed to be [search]
+"""
 @tool
-def search(query: str):
+def search_tool(query: str):
     """模拟一个搜索工具"""
     if "上海" in query.lower() or "Shanghai" in query.lower():
         return "现在30度，有雾."
@@ -19,13 +30,19 @@ def search(query: str):
 
 
 # 将工具函数放入工具列表
-tools = [search]
+tools = [search_tool]
 
 # 创建工具节点
 tool_node = ToolNode(tools)
 
 # 1.初始化模型和工具，定义并绑定工具到模型
-model = ChatOpenAI(model="gpt-4o", temperature=0).bind_tools(tools)
+# model = ChatOpenAI(model="gpt-4o", temperature=0).bind_tools(tools)
+
+model = ChatTongyi(
+    model="qwen-plus",
+    temperature=0,
+    api_key=os.getenv("DASHSCOPE_API_KEY"),
+).bind_tools(tools)
 
 
 # 定义函数，决定是否继续执行
