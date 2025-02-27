@@ -61,8 +61,8 @@ print(y)
 print(w1)
 print(w2)
 print("---------------------------")
-epoch_n = 20
-lr = 1e-6
+epoch_n = 20  # 迭代次数
+lr = 1e-6  # learning rate
 
 for epoch in range(epoch_n):
     h1 = x.mm(w1)  # (100,1000)*(1000,100)-->100*100
@@ -78,7 +78,7 @@ for epoch in range(epoch_n):
 
     grad_h = grad_y_pred.clone()
     grad_h = grad_h.mm(w2.t())
-    grad_h.clamp_(min=0)  # 将小于0的值全部赋值为0，相当于sigmoid
+    grad_h.clamp_(min=0)  # 将小于0的值全部赋值为0，相当于sigmoid（RoLU函数:max(x,0))
     grad_w1 = x.t().mm(grad_h)
 
     w1 = w1 - lr * grad_w1
