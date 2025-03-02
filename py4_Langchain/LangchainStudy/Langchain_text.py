@@ -66,7 +66,7 @@ tagging_prompt = ChatPromptTemplate.from_template(
 
 chain = tagging_prompt | model.with_structured_output(Classification)
 
-input_text = "中国人民大学的王教授：师德败坏，做出的事情实在让我生气！"
+input_text = "这个队友太坑了，做出的事情实在让我生气！"
 # input_text = "Estoy increiblemente contento de haberte conocido! Creo que seremos muy buenos amigos!"
 # result: Classification = chain.invoke({'input': input_text})
 # 返回的结果是Classification类型
