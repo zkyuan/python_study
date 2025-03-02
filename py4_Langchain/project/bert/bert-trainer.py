@@ -1,11 +1,11 @@
 # 1：环境准备
 # pip install torch transformers datasets scikit-learn
+# 可以自定义huggingface模型下载的位置
+# setx HF_HOME “D:\huggingface“  默认位置C:\Users\HP\.cache\huggingface
 from transformers import BertTokenizer, BertForSequenceClassification
 
 # 2：加载中文 BERT 预训练模型
-# 加载 bert 中文预训练模型和分词器
-# 可以自定义huggingface模型下载的位置
-# setx HF_HOME “D:\huggingface“  默认位置C:\Users\HP\.cache\huggingface
+# 加载 分词器和 bert 中文预训练模型
 tokenizer = BertTokenizer.from_pretrained('bert-base-chinese')
 model = BertForSequenceClassification.from_pretrained('bert-base-chinese', num_labels=3)
 
