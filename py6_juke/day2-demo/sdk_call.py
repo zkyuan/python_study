@@ -1,6 +1,7 @@
 from openai import OpenAI
 # pip install openai
 import os
+
 # 从环境变量中读取OPENAI_BASE_URL
 print(os.getenv('OPENAI_BASE_URL'))
 # 初始化 OpenAI 服务。
@@ -12,4 +13,5 @@ completion = client.chat.completions.create(
         {"role": "user", "content": "Hello"}
     ]
 )
-print(completion.choices[0].message)
+# print(completion.choices[0].message)
+print(completion.choices[0].message.content)
