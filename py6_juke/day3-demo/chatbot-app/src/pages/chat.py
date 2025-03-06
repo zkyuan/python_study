@@ -87,8 +87,13 @@ def chat_page():
     else:
         base_url = "https://api.openai.com/v1"
 
-    #获取当前脚本文件所在的目录路径
+    #获取当前脚本文件所在的 目录 路径，当前脚本sys.argv[0]是home.py，则他的路径是...chatbot-app\src
     src_path = os.path.dirname(os.path.realpath(sys.argv[0]))
+
+    print(sys.argv[0])
+    print(os.path.realpath(sys.argv[0]))
+    print(src_path)
+
     #读取默认配置文件
     with open(os.path.join(src_path, 'config/default.json'), 'r', encoding='utf-8') as f:
         config_defalut = json.load(f)
@@ -189,6 +194,7 @@ def chat_page():
                             if chunk_text:
                                 # 累加当前块的内容并更新显示
                                 streaming_text += chunk_text
+                                # 显示流式传输的内容
                                 placeholder.markdown(streaming_text)
                         # 将流式传输的内容保存为最终消息
                         model_msg = streaming_text
