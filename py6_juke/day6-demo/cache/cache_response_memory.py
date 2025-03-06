@@ -43,3 +43,12 @@ response2, wall_time2, user_time2, sys_time2, total_cpu_time2 = measure_invoke_t
 print("Second call response:", response2)
 print(f"Second call CPU times: user {user_time2 * 1000:.0f} ms, sys: {sys_time2 * 1000:.0f} ms, total: {total_cpu_time2 * 1000:.0f} ms")
 print(f"Second call Wall time: {wall_time2 * 1000:.0f} ms")
+
+"""
+First call response: content='当然可以！这是一个经典的笑话：\n\n有一天，小明问爸爸：“爸爸，‘成功’的秘诀是什么？”\n\n爸爸想了想，回答道：“成功的秘诀就是四个字——‘不要说’。”\n\n小明好奇地问：“为什么呢？”\n\n爸爸微微一笑：“因为说出来就不灵了！”\n\n希望这个笑话能让你开心！' additional_kwargs={'refusal': None} response_metadata={'token_usage': None, 'model_name': None, 'system_fingerprint': None, 'finish_reason': 'stop', 'logprobs': None} id='run-be7eae9a-fe64-44f4-9c66-7aeee3c3467d-0'
+First call CPU times: user 16 ms, sys: 0 ms, total: 16 ms
+First call Wall time: 2433 ms
+Second call response: content='当然可以！这是一个经典的笑话：\n\n有一天，小明问爸爸：“爸爸，‘成功’的秘诀是什么？”\n\n爸爸想了想，回答道：“成功的秘诀就是四个字——‘不要说’。”\n\n小明好奇地问：“为什么呢？”\n\n爸爸微微一笑：“因为说出来就不灵了！”\n\n希望这个笑话能让你开心！' additional_kwargs={'refusal': None} response_metadata={'token_usage': None, 'model_name': None, 'system_fingerprint': None, 'finish_reason': 'stop', 'logprobs': None} id='run-be7eae9a-fe64-44f4-9c66-7aeee3c3467d-0'
+Second call CPU times: user 0 ms, sys: 0 ms, total: 0 ms
+Second call Wall time: 0 ms
+"""
