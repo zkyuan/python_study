@@ -30,6 +30,8 @@ def generated_speech(client, model, voice, prompt, speed):
     """
         您当前请求的URI为: /luomacode-api/open-api/v1/audio/speech 不正确。
         正确的URI为: /luomacode-api/open-api/v1/chat/completions, 请检查。
+        
+        原因：代理的api不支持tts模型
     """
     response = client.audio.speech.create(
         model=model,
