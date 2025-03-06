@@ -13,7 +13,7 @@ prompt = ChatPromptTemplate.from_messages(
         ("human", "{input}"),
     ]
 )
-model = ChatOpenAI(model="gpt-4")
+model = ChatOpenAI(model="gpt-4o")
 runnable = prompt | model
 
 store = {}
