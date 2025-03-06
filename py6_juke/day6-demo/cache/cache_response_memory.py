@@ -8,6 +8,7 @@ from langchain_community.cache import InMemoryCache
 
 # 创建LLM实例
 llm = ChatOpenAI(model="gpt-4")
+# 相同的问题调缓存比调大模型更快
 set_llm_cache(InMemoryCache())
 
 def measure_invoke_time(llm, prompt):
