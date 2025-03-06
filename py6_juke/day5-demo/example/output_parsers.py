@@ -2,7 +2,7 @@ from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.output_parsers import StrOutputParser
 
-model = ChatOpenAI(model="gpt-4")
+model = ChatOpenAI(model="gpt-4o")
 
 messages = [
     SystemMessage(content="将以下内容从英语翻译成中文"),
