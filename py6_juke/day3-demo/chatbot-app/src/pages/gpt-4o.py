@@ -1,3 +1,8 @@
+"""
+ * @author: zkyuan
+ * @date: 2025/3/6 12:31
+ * @description: 图生文
+"""
 from openai import OpenAI
 import streamlit as st
 import json

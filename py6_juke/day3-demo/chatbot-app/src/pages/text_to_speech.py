@@ -1,3 +1,8 @@
+"""
+ * @author: zkyuan
+ * @date: 2025/3/6 12:31
+ * @description: 文字转语音
+"""
 import streamlit as st
 from openai import OpenAI
 
@@ -22,6 +27,10 @@ def generated_speech(client, model, voice, prompt, speed):
         # 获取临时文件的路径
         speech_file_path = temp_file.name
         # 使用 OpenAI 客户端生成语音，传入模型、声音、输入文本和速度参数。
+    """
+        您当前请求的URI为: /luomacode-api/open-api/v1/audio/speech 不正确。
+        正确的URI为: /luomacode-api/open-api/v1/chat/completions, 请检查。
+    """
     response = client.audio.speech.create(
         model=model,
         voice=voice,

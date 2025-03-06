@@ -1,3 +1,10 @@
+"""
+ * @author: zkyuan
+ * @date: 2025/3/6 12:26
+ * @description: 对话
+ 第三方生成图片的api
+ [#describe](https://image.pollinations.ai/prompt/#describe)[#图片中文描述]
+"""
 from openai import OpenAI
 import streamlit as st
 import json

@@ -1,3 +1,8 @@
+"""
+ * @author: zkyuan
+ * @date: 2025/3/6 12:31
+ * @description: 语音转文字
+"""
 import streamlit as st
 from audio_recorder_streamlit import audio_recorder
 from openai import OpenAI
