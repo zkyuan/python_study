@@ -10,6 +10,7 @@ async def amultiply(a: int, b: int) -> int:
     return a * b
 
 async def main():
+    # 既支持同步，也支持异步
     # func 参数：指定一个同步函数。当你在同步上下文中调用工具时，它会使用这个同步函数来执行操作。
     # oroutine 参数：指定一个异步函数。当你在异步上下文中调用工具时，它会使用这个异步函数来执行操作。
     calculator = StructuredTool.from_function(func=multiply, coroutine=amultiply)
