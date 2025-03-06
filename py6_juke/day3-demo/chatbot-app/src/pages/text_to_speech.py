@@ -27,12 +27,11 @@ def generated_speech(client, model, voice, prompt, speed):
         # 获取临时文件的路径
         speech_file_path = temp_file.name
         # 使用 OpenAI 客户端生成语音，传入模型、声音、输入文本和速度参数。
-    """
-        您当前请求的URI为: /luomacode-api/open-api/v1/audio/speech 不正确。
-        正确的URI为: /luomacode-api/open-api/v1/chat/completions, 请检查。
-        
-        原因：代理的api不支持tts模型
-    """
+
+        # 您当前请求的URI为: /luomacode-api/open-api/v1/audio/speech 不正确。
+        # 正确的URI为: /luomacode-api/open-api/v1/chat/completions, 请检查。
+        #
+        # 原因：代理的api不支持tts模型
     response = client.audio.speech.create(
         model=model,
         voice=voice,
@@ -71,7 +70,7 @@ def tts_page():
     client = get_openai_client(base_url, api_key)
 
     # 创建一个下拉菜单供用户选择模型。
-    model = st.selectbox('model ', ["tts-1", "tts-1-hd"])
+    model = st.selectbox('model ', ["tts-1", "tts-1-hd", "GPT-4o"])
     # 创建一个下拉菜单供用户选择发音人
     voice = st.selectbox('voice ', ["alloy", "echo", "fable", "onyx", "nova", "shimmer"])
     # 建一个滑动条供用户选择语速。
