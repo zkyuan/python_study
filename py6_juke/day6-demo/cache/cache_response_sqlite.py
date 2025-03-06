@@ -8,6 +8,7 @@ from langchain_community.cache import SQLiteCache
 
 # 创建LLM实例
 llm = ChatOpenAI(model="gpt-4")
+# 会自己创建数据库.langchain.db
 set_llm_cache(SQLiteCache(database_path=".langchain.db"))
 
 def measure_invoke_time(llm, prompt):
