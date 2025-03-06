@@ -34,6 +34,6 @@ app.add_middleware(
 )
 if __name__ == "__main__":
     import uvicorn
-    # 在langserve目录下执行 poetry run langchain serve --port=8000
+    # 在app的上级目录langserve目录下执行 poetry run langchain serve --port=8000
     # 接口文档 http://127.0.0.1:8000/docs
     uvicorn.run(app, host="localhost", port=8000)
