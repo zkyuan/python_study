@@ -33,7 +33,7 @@ loader = torch.utils.data.DataLoader(
     drop_last=True,
 )
 print(len(loader))
-#训练
+#训练，全量微调
 def train():
     global model
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
