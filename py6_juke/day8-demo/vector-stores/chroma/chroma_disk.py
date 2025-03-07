@@ -16,7 +16,7 @@ embedding_function = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
 query = "Pixar公司是做什么的?"
 
-# 保存到磁盘
+# 保存到磁盘，如果没有更新，加载到磁盘只执行一次
 db2 = Chroma.from_documents(docs, embedding_function, persist_directory="./chroma_db")
 # 从磁盘加载
 db3 = Chroma(persist_directory="./chroma_db", embedding_function=embedding_function)
