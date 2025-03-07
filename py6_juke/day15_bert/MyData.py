@@ -5,7 +5,7 @@ class Mydataset(Dataset):
     #初始化数据
     def __init__(self,split):
         #从磁盘加载数据
-        self.dataset = load_from_disk(r"D:\PycharmProjects\demo_15\data\ChnSentiCorp")
+        self.dataset = load_from_disk(r"E:\code\GitWork\python_study\py6_juke\day15_bert\data\ChnSentiCorp")
         if split =="train":
             self.dataset = self.dataset["train"]
         elif split == "validation":
