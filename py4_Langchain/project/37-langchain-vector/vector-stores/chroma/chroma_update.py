@@ -35,3 +35,7 @@ print(example_db._collection.get(ids=[ids[-1]]))
 example_db._collection.delete(ids=[ids[-1]])
 print("删除后计数", example_db._collection.count())
 print(example_db._collection.get(ids=[ids[-1]]))
+
+# 添加文档到已有向量库
+# example_db.add_documents(docs)
+# example_db._persist_directory(persist_directory="./chroma_db")
