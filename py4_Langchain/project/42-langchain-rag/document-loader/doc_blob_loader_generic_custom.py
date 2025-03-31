@@ -28,7 +28,7 @@ class MyCustomLoader(GenericLoader):
         print("这是静态方法==========")
         return MyParser()
 
-
+# from_filesystem 这个方法会调用get_parser方法，
 loader = MyCustomLoader.from_filesystem(path="./../resource", glob="*.mdx", show_progress=True)
 for idx, doc in enumerate(loader.lazy_load()):
     if idx < 5:
