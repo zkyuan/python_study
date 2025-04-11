@@ -19,11 +19,11 @@ class MCPClient:
         """初始化 MCP 客户端"""
         self.exit_stack = AsyncExitStack()
         # self.openai_api_key = os.getenv("OPENAI_API_KEY")  # 读取 OpenAI API Key
-        self.openai_api_key = os.getenv("DEEPSEEK_API_KEY")  # 读取 OpenAI API Key
+        self.openai_api_key = os.getenv("DEEPSEEK_API_KEY")
         # self.base_url = os.getenv("BASE_URL_GPT")  # 读取 BASE YRL
-        self.base_url = os.getenv("BASE_URL_DEEPSEEK")  # 读取 BASE YRL
+        self.base_url = os.getenv("BASE_URL_DEEPSEEK")
         # self.model = os.getenv("MODEL_GPT")  # 读取 model
-        self.model = os.getenv("MODEL_DEEPSEEK")  # 读取 model
+        self.model = os.getenv("MODEL_DEEPSEEK")
         if not self.openai_api_key:
             raise ValueError("❌ 未找到 OpenAI API Key，请在 .env 文件中设置 OPENAI_API_KEY")
         self.client = OpenAI(api_key=self.openai_api_key, base_url=self.base_url)
@@ -58,12 +58,6 @@ class MCPClient:
         response = await self.session.list_tools()
         tools = response.tools
         print("\n已连接到服务器，支持以下工具:", [tool.name for tool in tools])
-        messages = [{"role": "user", "content": "你好，你是谁"}]
-        response = self.client.chat.completions.create(
-            model=self.model,
-            messages=messages,
-        )
-        print(response.choices[0].message.content)
 
     async def process_query(self, query: str) -> str:
         """

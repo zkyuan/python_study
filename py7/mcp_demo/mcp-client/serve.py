@@ -116,8 +116,9 @@ def format_weather(data: dict[str, Any] | str) -> str:
     )
 
 
-@mcp.tool()
+@mcp.tool(name="query_weather")
 async def query_weather(city: str) -> str:
+    print(f"调用了query_weather工具，参数为：{city}")
     data = await fetch_weather(city)
     print(data)
     return format_weather(data)
