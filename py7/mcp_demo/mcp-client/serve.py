@@ -100,21 +100,37 @@ def format_weather(data: dict[str, Any] | str) -> str:
     description = weather_list[0].get("description", "未知")
 
     # 解析数据
-    text = data["result"]["now"]['text']
-    temp = data["result"]["now"]['temp']
-    feels_like = data["result"]["now"]['feels_like']
-    rh = data["result"]["now"]['rh']
-    wind_dir = data["result"]["now"]['wind_dir']
-    wind_class = data["result"]["now"]['wind_class']
+    text = data["result"]["now"]['text']  # 当前天气
+    temp = data["result"]["now"]['temp']  # 当前温度
+    feels_like = data["result"]["now"]['feels_like']  # 体感温度
+    rh = data["result"]["now"]['rh']  # 相对湿度
+    wind_dir = data["result"]["now"]['wind_dir']  # 风速
+    wind_class = data["result"]["now"]['wind_class']  # 风向
+    # prec_1h = data["result"]["now"]['prec_1h']  # 1小时累计降水量(mm)
+    # clouds = data["result"]["now"]['clouds']  # 云量(%)
+    # vis = data["result"]["now"]['vis']  # 能见度(m)
+    # aqi = data["result"]["now"]['aqi']  # 空气质量指数数值
+    # pm25 = data["result"]["now"]['pm25']  # pm2.5浓度(μg/m3)
+    # pm10 = data["result"]["now"]['pm10']  # pm10浓度(μg/m3)
+    # o3 = data["result"]["now"]['o3']  # 臭氧浓度(μg/m3)
 
     return (
         f"🌍 {city}, {country}\n"
         f"🌡 温度: {temp}°C\n"
-        f"💧 湿度: {humidity}%\n"
+        f"💧 湿度: {rh}%\n"
         f"🌬 风速: {wind_dir} m/s\n"
         f"🌤 天气: {description}\n"
+        f"💨 风向: {wind_class} m/s\n"
+        f"🌡 体感温度: {feels_like}°C\n"
+        # f"💧 1小时累计降水量(mm): {prec_1h}%\n"
+        # f"💧 云量(%): {clouds}%\n"
+        # f"💧 能见度(m): {vis}%\n"
+        # f"💧 空气质量指数数值: {aqi}%\n"
+        # f"💧 pm2.5浓度(μg/m3): {pm25}%\n"
+        # f"💧 pm10浓度(μg/m3): {pm10}%\n"
+        # f"💧 臭氧浓度(μg/m3): {o3}%\n"
+        f"📝 描述: {text}"
     )
-
 
 @mcp.tool(name="query_weather")
 async def query_weather(city: str) -> str:
